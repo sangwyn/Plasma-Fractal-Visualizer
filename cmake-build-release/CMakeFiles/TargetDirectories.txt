@@ -1,0 +1,3 @@
+/home/oleg/coding/praks/plasma_fractal/cmake-build-release/CMakeFiles/plasma_fractal.dir
+/home/oleg/coding/praks/plasma_fractal/cmake-build-release/CMakeFiles/edit_cache.dir
+/home/oleg/coding/praks/plasma_fractal/cmake-build-release/CMakeFiles/rebuild_cache.dir
