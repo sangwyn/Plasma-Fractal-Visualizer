@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Release-f5ebdc15457944623624.json",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.23"
@@ -19,7 +19,7 @@
 					]
 				}
 			],
-			"name" : "Release",
+			"name" : "Debug",
 			"projects" : 
 			[
 				{
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "plasma_fractal::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-plasma_fractal-Release-e69a6ac830d379124013.json",
+					"jsonFile" : "target-plasma_fractal-Debug-6a04da101c205c55caca.json",
 					"name" : "plasma_fractal",
 					"projectIndex" : 0
 				}
@@ -49,7 +49,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/oleg/coding/praks/plasma_fractal/cmake-build-release",
+		"build" : "/home/oleg/coding/praks/plasma_fractal/cmake-build-debug",
 		"source" : "/home/oleg/coding/praks/plasma_fractal"
 	},
 	"version" : 

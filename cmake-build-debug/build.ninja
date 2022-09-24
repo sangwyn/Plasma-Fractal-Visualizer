@@ -61,6 +61,12 @@ build CMakeFiles/plasma_fractal.dir/FractalGenerator.cpp.o: CXX_COMPILER__plasma
   OBJECT_DIR = CMakeFiles/plasma_fractal.dir
   OBJECT_FILE_DIR = CMakeFiles/plasma_fractal.dir
 
+build CMakeFiles/plasma_fractal.dir/Globals.cpp.o: CXX_COMPILER__plasma_fractal_Debug /home/oleg/coding/praks/plasma_fractal/Globals.cpp || cmake_object_order_depends_target_plasma_fractal
+  DEP_FILE = CMakeFiles/plasma_fractal.dir/Globals.cpp.o.d
+  FLAGS = -g -std=gnu++20
+  OBJECT_DIR = CMakeFiles/plasma_fractal.dir
+  OBJECT_FILE_DIR = CMakeFiles/plasma_fractal.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target plasma_fractal
@@ -69,7 +75,7 @@ build CMakeFiles/plasma_fractal.dir/FractalGenerator.cpp.o: CXX_COMPILER__plasma
 #############################################
 # Link the executable plasma_fractal
 
-build plasma_fractal: CXX_EXECUTABLE_LINKER__plasma_fractal_Debug CMakeFiles/plasma_fractal.dir/main.cpp.o CMakeFiles/plasma_fractal.dir/FractalGenerator.cpp.o | /usr/lib/libsfml-graphics.so.2.5.1 /usr/lib/libsfml-audio.so.2.5.1 /usr/lib/libsfml-window.so.2.5.1 /usr/lib/libsfml-system.so.2.5.1
+build plasma_fractal: CXX_EXECUTABLE_LINKER__plasma_fractal_Debug CMakeFiles/plasma_fractal.dir/main.cpp.o CMakeFiles/plasma_fractal.dir/FractalGenerator.cpp.o CMakeFiles/plasma_fractal.dir/Globals.cpp.o | /usr/lib/libsfml-graphics.so.2.5.1 /usr/lib/libsfml-audio.so.2.5.1 /usr/lib/libsfml-window.so.2.5.1 /usr/lib/libsfml-system.so.2.5.1
   FLAGS = -g
   LINK_LIBRARIES = /usr/lib/libsfml-graphics.so.2.5.1  /usr/lib/libsfml-audio.so.2.5.1  /usr/lib/libsfml-window.so.2.5.1  /usr/lib/libsfml-system.so.2.5.1
   OBJECT_DIR = CMakeFiles/plasma_fractal.dir

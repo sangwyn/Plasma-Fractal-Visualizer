@@ -74,7 +74,9 @@ void FractalGenerator::SquareStep(float depth, sf::Vector2i pos, int delta) {
   b /= cnt;
 
   float disposition = GetDisposition(depth, 2 * delta);
-  sf::Color color((int) (r + GetDisposition(depth, 2 * delta)) % 256, (int) (g + GetDisposition(depth, 2 * delta)) % 256, (int) (b + GetDisposition(depth, 2 * delta)) % 256);
+  sf::Color color((int) (r + GetDisposition(depth, 2 * delta)) % 256,
+                  (int) (g + GetDisposition(depth, 2 * delta)) % 256,
+                  (int) (b + GetDisposition(depth, 2 * delta)) % 256);
   image_.setPixel(pos.x, pos.y, color);
   pixels_[pos.x][pos.y] = true;
 }
@@ -91,16 +93,30 @@ void FractalGenerator::DiamondStep(float depth, sf::Vector2i top_left, sf::Vecto
   sf::Color c1 = image_.getPixel(top_left.x, top_left.y), c2 = image_.getPixel(bottom_right.x, top_left.y),
       c3 = image_.getPixel(top_left.x, bottom_right.y), c4 = image_.getPixel(bottom_right.x, bottom_right.y);
 
-  float red = (float) (c1.r + c2.r + c3.r + c4.r) / 4.0, green = (float) (c1.g + c2.g + c3.g + c4.g) / 4.0,
-      blue = (float) (c1.b + c2.b + c3.b + c4.b) / 4.0;
-
+  float l1, a1, b1, l2, a2, b2, l3, a3, b3, l4, a4, b4;
+  Rgb2Lab(c1, l1, a1, b1);
+  Rgb2Lab(c2, l2, a2, b2);
+  Rgb2Lab(c3, l3, a3, b3);
+  Rgb2Lab(c4, l4, a4, b4);
+  float l = (l1 + l2 + l3 + l4) / 4.0, a = (a1 + a2 + a3 + a4) / 4.0, b = (b1 + b2 + b3 + b4) / 4.0;
   float disposition = GetDisposition(depth, abs(bottom_right.x - top_left.x));
-//    std::cout << disposition << '\n';
-
+  l += disposition;
+  a += disposition;
+  b += disposition;
   sf::Vector2i center((top_left.x + bottom_right.x) / 2, (top_left.y + bottom_right.y) / 2);
-  sf::Color color((int) (red + GetDisposition(depth, abs(bottom_right.x - top_left.x))) % 256, (int) (green + GetDisposition(depth, abs(bottom_right.x - top_left.x))) % 256, (int) (blue + GetDisposition(depth, abs(bottom_right.x - top_left.x))) % 256);
-  image_.setPixel(center.x, center.y, color);
+
+  image_.setPixel(center.x, center.y, Lab2Rgb(l, a, b));
   pixels_[center.x][center.y] = true;
+
+//  float red = (float) (c1.r + c2.r + c3.r + c4.r) / 4.0, green = (float) (c1.g + c2.g + c3.g + c4.g) / 4.0,
+//      blue = (float) (c1.b + c2.b + c3.b + c4.b) / 4.0;
+//
+//  float disposition = GetDisposition(depth, abs(bottom_right.x - top_left.x));
+//
+//  sf::Vector2i center((top_left.x + bottom_right.x) / 2, (top_left.y + bottom_right.y) / 2);
+//  sf::Color color((int) (red + GetDisposition(depth, abs(bottom_right.x - top_left.x))) % 256, (int) (green + GetDisposition(depth, abs(bottom_right.x - top_left.x))) % 256, (int) (blue + GetDisposition(depth, abs(bottom_right.x - top_left.x))) % 256);
+//  image_.setPixel(center.x, center.y, color);
+//  pixels_[center.x][center.y] = true;
 }
 
 void FractalGenerator::GenerateFractal() {
@@ -149,9 +165,16 @@ void FractalGenerator::PaintAverage(float depth, sf::Vector2i first, sf::Vector2
 //  image_.setPixel(pos.x, pos.y, sf::Color((c1.r + c2.r) / 2 + GetDisposition(depth, std::max(abs(second.x - first.x), abs(second.y - first.y))),
 //                                          (c1.g + c2.g) / 2 + GetDisposition(depth, std::max(abs(second.x - first.x), abs(second.y - first.y))),
 //                                          (c1.b + c2.b) / 2 + GetDisposition(depth, std::max(abs(second.x - first.x), abs(second.y - first.y)))));
-  image_.setPixel(pos.x, pos.y, sf::Color((c1.r + c2.r) / 2,
-                                          (c1.g + c2.g) / 2,
-                                          (c1.b + c2.b) / 2));
+
+//  image_.setPixel(pos.x, pos.y, sf::Color((c1.r + c2.r) / 2,
+//                                          (c1.g + c2.g) / 2,
+//                                          (c1.b + c2.b) / 2));
+
+  float l1, a1, b1, l2, a2, b2;
+  Rgb2Lab(c1, l1, a1, b1);
+  Rgb2Lab(c2, l2, a2, b2);
+  float l = (l1 + l2) / 2.0, a = (a1 + a2) / 2.0, b = (b1 + b2) / 2.0;
+  image_.setPixel(pos.x, pos.y, Lab2Rgb(l, a, b));
 
   pixels_[pos.x][pos.y] = true;
 }
